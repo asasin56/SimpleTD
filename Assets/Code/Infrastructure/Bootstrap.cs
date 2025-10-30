@@ -14,8 +14,14 @@ namespace Code.Infrastructure
 
         private void Start()
         {
+            
+            _stateMachine.RegisterState<BootstrapState>();
+            _stateMachine.RegisterState<MenuState>();
+            _stateMachine.RegisterState<LoadingState>();
+            _stateMachine.RegisterState<GameState>();
+            
             _stateMachine.ChangeState<BootstrapState>();
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
     }
 }
