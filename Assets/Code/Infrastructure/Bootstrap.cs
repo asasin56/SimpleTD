@@ -19,6 +19,7 @@ namespace Code.Infrastructure
             _stateMachine.RegisterState<MenuState>();
             _stateMachine.RegisterState<LoadingState>();
             _stateMachine.RegisterState<GameState>();
+            _stateMachine.RegisterState<ExitState>();
             
             _stateMachine.ChangeState<BootstrapState>();
             DontDestroyOnLoad(gameObject);

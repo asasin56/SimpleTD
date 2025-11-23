@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingScene: Loading
   _mainMenu: MainMenu
+  _gameScene: Game

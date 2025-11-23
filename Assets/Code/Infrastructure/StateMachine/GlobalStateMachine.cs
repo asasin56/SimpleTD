@@ -7,7 +7,7 @@ namespace Code.Infrastructure.StateMachine
 {
    public class GlobalStateMachine 
    {
-      private readonly Dictionary<Type, Func<IState>> _stateFactories = new Dictionary<Type, Func<IState>>();
+      private readonly Dictionary<Type, Func<IState>> _stateFactories = new();
       private DiContainer _container;
       private IState _currentState;
 

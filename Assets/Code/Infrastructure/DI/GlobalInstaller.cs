@@ -12,7 +12,6 @@ namespace Code.Infrastructure.DI
         [SerializeField] private GlobalData _globalData;
         public override void InstallBindings()
         {
-            Debug.Log("[GlobalInstaller] InstallBindings CALLED ✅");
             InstallGlobalServices();
         }
 
