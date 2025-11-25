@@ -22,16 +22,16 @@ namespace Code.MenuLogic
             Debug.Log("Initialize MenuPresenter");
             _view.SubscribeButtons();
         
-            _view.OnLinkClick
+            _view.LinkClicked
                 .Where(i => i < _data.Links.Count) 
                 .Subscribe(i => Application.OpenURL(_data.Links[i]))
                 .AddTo(_view);
         
-            _view.OnPlayClick
+            _view.PlayClicked
                 .Subscribe(_ => OnPlayButtonClicked())
                 .AddTo(_view);
 
-            _view.OnQuitClick
+            _view.QuitClicked
                 .Subscribe(_ => OnQuitButtonClicked())
                 .AddTo(_view);
         }

@@ -1,3 +1,4 @@
+using Code.Data.Configs;
 using UnityEngine.SceneManagement;
 
 namespace Code.Infrastructure.StateMachine.States

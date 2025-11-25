@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Code.Data.Configs;
 using Code.Infrastructure;
 using Code.Infrastructure.StateMachine.States;
 using Code.MenuLogic;

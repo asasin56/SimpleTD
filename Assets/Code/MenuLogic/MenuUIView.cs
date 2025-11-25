@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,33 +6,43 @@ using UniRx;
 
 public class MenuUIView : MonoBehaviour
 {
-   [SerializeField] private List<Button> _linkButtons = new List<Button>();
+    
+   public IObservable<int> LinkClicked => _linkClicked;
+   public IObservable<Unit> PlayClicked => _playClicked;
+   public IObservable<Unit> QuitClicked => _quitClicked;
+   
+   [SerializeField] private List<Button> _linkButtons = new();
    [SerializeField] private Button _playButton;
    [SerializeField] private Button _quitButton;
     
+   private readonly Subject<int> _linkClicked = new();
+   private readonly Subject<Unit> _playClicked = new();
+   private readonly Subject<Unit> _quitClicked = new();
+
+   private CompositeDisposable _disposables = new();
    
-    public readonly Subject<int> OnLinkClick = new Subject<int>();
-    public readonly Subject<Unit> OnPlayClick = new Subject<Unit>();
-    public readonly Subject<Unit> OnQuitClick = new Subject<Unit>();
     public void SubscribeButtons()
     {
+        _disposables.Clear();
         for (int i = 0; i < _linkButtons.Count; i++)
         {
             int index = i; 
             _linkButtons[i].onClick.AsObservable()
-                .Subscribe(_ => OnLinkClick.OnNext(index))
-                .AddTo(this);
+                .Subscribe(_ => _linkClicked.OnNext(index))
+                .AddTo(_disposables);
         }
 
-        _playButton.onClick.AsObservable().Subscribe(_ => OnPlayClick.OnNext(Unit.Default)).AddTo(this);
-        _quitButton.onClick.AsObservable().Subscribe(_ => OnQuitClick.OnNext(Unit.Default)).AddTo(this);
+        _playButton.onClick.AsObservable()
+            .Subscribe(_ => _playClicked.OnNext(Unit.Default)).AddTo(_disposables);
+        _quitButton.onClick.AsObservable()
+            .Subscribe(_ => _quitClicked.OnNext(Unit.Default)).AddTo(_disposables);
         
     }
-    
+
     private void OnDestroy()
     {
-        OnLinkClick.OnCompleted();
-        OnPlayClick.OnCompleted();
-        OnQuitClick.OnCompleted();
+        _linkClicked.Dispose();
+        _playClicked.Dispose();
+        _quitClicked.Dispose();
     }
 }

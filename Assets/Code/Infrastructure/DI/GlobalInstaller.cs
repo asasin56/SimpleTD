@@ -1,4 +1,5 @@
 using System;
+using Code.Data.Configs;
 using Code.Infrastructure.StateMachine;
 using Code.Infrastructure.StateMachine.States;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Code.Infrastructure.DI
 {
 
     public class GlobalInstaller : MonoInstaller
-    { 
+    {
         [SerializeField] private GlobalData _globalData;
         public override void InstallBindings()
         {
@@ -41,6 +42,7 @@ namespace Code.Infrastructure.DI
                 .FromInstance(_globalData)
                 .AsSingle()
                 .NonLazy();
+            
 
         }
     }

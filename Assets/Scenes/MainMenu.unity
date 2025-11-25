@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 1223155398}
   - component: {fileID: 1223155397}
   m_Layer: 0
-  m_Name: Magic
+  m_Name: MagicParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
